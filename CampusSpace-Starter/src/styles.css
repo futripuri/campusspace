@@ -12,3 +12,19 @@ body{background:#fbfbff;color:#4e5268}button:focus-visible,input:focus-visible,s
 /* pastel color dots and cards */
 .course-card,.material-card,.note-card,.calendar-wrap,.course-detail-hero{border-radius:19px}
 @media(max-width:640px){.welcome-banner{border-radius:20px}.auth-art{background:linear-gradient(145deg,#c8c9fa,#b8e7dc 75%,#ffe4bd)}}
+
+
+/* Semester history — pastel archive panel */
+.semester-history-panel{margin-top:22px;background:linear-gradient(135deg,#fff 0%,#f5f2ff 100%);border:1px solid #e8e3fb}
+.history-count{font-size:12px;font-weight:700;color:#7770b5;background:#e9e7ff;border-radius:999px;padding:7px 11px;white-space:nowrap}
+.history-empty{display:flex;align-items:center;gap:14px;padding:16px 4px}
+.history-empty-icon{width:46px;height:46px;display:grid;place-items:center;border-radius:16px;background:#fff0d9;color:#b27b4c;font-size:24px;flex-shrink:0}
+.history-empty b{display:block;color:#3e3b59;margin-bottom:4px}
+.history-empty p{margin:0;line-height:1.5}
+.semester-history-list{display:grid;gap:10px}
+.semester-history-row{display:flex;align-items:center;gap:12px;padding:13px;border:1px solid #eee9fa;background:#fff;border-radius:16px}
+.history-book{width:40px;height:40px;display:grid;place-items:center;border-radius:13px;background:#e1f4eb;color:#438a70;flex-shrink:0}
+.history-semester-meta{display:flex;flex-direction:column;gap:4px;min-width:0;flex:1}
+.history-semester-meta b{color:#3e3b59}
+.history-semester-meta small{font-size:12px;color:#8b899c}
+.history-archived{font-size:11px;color:#7770b5;background:#f0efff;border-radius:999px;padding:6px 9px}
