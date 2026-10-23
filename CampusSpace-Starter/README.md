@@ -44,3 +44,8 @@ Aplikasi web pribadi untuk mengelola kuliah: absensi, tugas, materi, catatan, ni
 - Batas file 20 MB per file.
 - Penghitungan absensi menganggap status **Alpa** dan **Izin** sebagai tidak hadir yang memakai toleransi; **Sakit** dan **Hadir** tidak mengurangi toleransi. Sesuaikan kebijakan kampus/dosen jika berbeda.
 - Versi awal ini belum mengirim notifikasi push/email otomatis; deadline dan peringatan tampil di dalam aplikasi.
+
+## Pembaruan fitur materi dan semester
+- Materi sekarang bisa berupa file (maks. 20 MB) atau tautan web, termasuk Google Drive/OneDrive/tautan kelas. Pastikan tautan dibagikan dengan izin yang sesuai.
+- Setelah memperbarui versi ini pada project Supabase yang sudah ada, jalankan ulang seluruh `supabase.sql` di SQL Editor agar kolom tautan dan aturan file diperbarui.
+- Semester tidak lagi otomatis dibuat sebagai Semester 5. Pengguna harus membuka **Kelola Semester** dan memasukkan semester yang sedang dijalani (misalnya Semester 1). Saat naik semester, buat semester baru dari menu yang sama; semester baru menjadi aktif, sedangkan riwayat semester sebelumnya tetap ada.

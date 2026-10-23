@@ -7,7 +7,7 @@ create extension if not exists pgcrypto;
 create table if not exists public.semesters (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null references auth.users(id) on delete cascade,
-  name text not null default 'Semester 5',
+  name text not null default 'Semester 1',
   start_date date,
   end_date date,
   absence_limit integer not null default 3 check (absence_limit >= 0),
@@ -63,11 +63,16 @@ create table if not exists public.materials (
   description text,
   meeting_number integer,
   material_date date,
-  file_name text not null,
-  file_path text not null,
+  file_name text,
+  file_path text,
   mime_type text,
+  material_url text,
   created_at timestamptz not null default now()
 );
+
+alter table public.materials add column if not exists material_url text;
+alter table public.materials alter column file_name drop not null;
+alter table public.materials alter column file_path drop not null;
 
 create table if not exists public.notes (
   id uuid primary key default gen_random_uuid(),
@@ -116,28 +121,11 @@ end $$;
 
 -- Private storage bucket for lecture materials and task files.
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
-values (
-  'campus-files',
-  'campus-files',
-  false,
-  20971520,
-  array[
-    'application/pdf',
-    'application/msword',
-    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-    'application/vnd.ms-powerpoint',
-    'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-    'application/vnd.ms-excel',
-    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-    'image/jpeg',
-    'image/png',
-    'image/webp'
-  ]
-)
+values ('campus-files', 'campus-files', false, 20971520, null)
 on conflict (id) do update set
   public = false,
   file_size_limit = 20971520,
-  allowed_mime_types = excluded.allowed_mime_types;
+  allowed_mime_types = null;
 
 drop policy if exists "Users access own campus files" on storage.objects;
 create policy "Users access own campus files"
